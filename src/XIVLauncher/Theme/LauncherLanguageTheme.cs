@@ -27,6 +27,7 @@ namespace XIVLauncher.Theme
         private static readonly ReadOnlyCollection<ThemeColorOption> ThemeColorOptions = new(new[]
         {
             new ThemeColorOption("Blue", "#2196F3"),
+            new ThemeColorOption("Light Blue", "#03A9F4"),
             new ThemeColorOption("Red", "#F44336"),
             new ThemeColorOption("Green", "#4CAF50"),
             new ThemeColorOption("Purple", "#9C27B0"),

@@ -299,7 +299,9 @@ namespace XIVLauncher.Windows
                 LauncherLanguageNoticeTextBlock.Visibility = Visibility.Visible;
             }
 
-            if (LauncherLanguageComboBox.SelectedIndex >= 0)
+            if (LauncherLanguageComboBox.SelectedIndex >= 0 &&
+                ThemePrimaryColorComboBox != null &&
+                ThemeSecondaryColorComboBox != null)
             {
                 UpdateThemePreview();
             }
@@ -328,12 +330,18 @@ namespace XIVLauncher.Windows
         private void SelectThemeColor(ComboBox comboBox, string? selectedColor, string fallbackColor)
         {
             var normalizedColor = (selectedColor ?? fallbackColor).ToUpperInvariant();
+            var defaultOption = _themeColorOptions.FirstOrDefault(x => x.HexColor.Equals(fallbackColor, StringComparison.OrdinalIgnoreCase))
+                                ?? _themeColorOptions.FirstOrDefault();
+
             comboBox.SelectedItem = _themeColorOptions.FirstOrDefault(x => x.HexColor.Equals(normalizedColor, StringComparison.OrdinalIgnoreCase))
-                                   ?? _themeColorOptions.First(x => x.HexColor.Equals(fallbackColor, StringComparison.OrdinalIgnoreCase));
+                                   ?? defaultOption;
         }
 
         private void UpdateThemePreview()
         {
+            if (ThemePrimaryColorComboBox == null || ThemeSecondaryColorComboBox == null)
+                return;
+
             var primary = (ThemePrimaryColorComboBox.SelectedItem as LauncherThemeManager.ThemeColorOption)?.HexColor;
             var secondary = (ThemeSecondaryColorComboBox.SelectedItem as LauncherThemeManager.ThemeColorOption)?.HexColor;
             LauncherThemeManager.Apply(primary, secondary);
