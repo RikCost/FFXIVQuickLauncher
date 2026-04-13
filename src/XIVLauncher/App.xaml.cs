@@ -404,7 +404,7 @@ namespace XIVLauncher
             Loc.Setup("{}");
 #endif
 
-            LauncherLanguageTheme.Apply(App.Settings.LauncherLanguage);
+            LauncherThemeManager.ApplyFromSettings(App.Settings);
 
             try
             {

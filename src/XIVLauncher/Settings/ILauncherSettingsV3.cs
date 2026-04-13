@@ -43,6 +43,8 @@ namespace XIVLauncher.Settings
         string DalamudRolloutBucket { get; set; }
         bool? AutoStartSteam { get; set; }
         bool? ForceNorthAmerica { get; set; }
+        string? LauncherThemePrimaryColor { get; set; }
+        string? LauncherThemeSecondaryColor { get; set; }
 
         string? DalamudBetaKind { get; set; }
         string? DalamudBetaKey { get; set; }

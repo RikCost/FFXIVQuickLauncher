@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -31,6 +32,7 @@ namespace XIVLauncher.Windows
         public event EventHandler CloseMainWindowGracefully;
 
         private SettingsControlViewModel ViewModel => DataContext as SettingsControlViewModel;
+        private readonly List<LauncherThemeManager.ThemeColorOption> _themeColorOptions = LauncherThemeManager.GetThemeColorOptions().ToList();
 
         private bool _hasTriggeredLogo = false;
 
@@ -67,7 +69,9 @@ namespace XIVLauncher.Windows
             LanguageComboBox.SelectedIndex = (int) App.Settings.Language.GetValueOrDefault(ClientLanguage.English);
             LauncherLanguageComboBox.SelectedIndex = (int) App.Settings.LauncherLanguage.GetValueOrDefault(LauncherLanguage.English);
             LauncherLanguageNoticeTextBlock.Visibility = Visibility.Hidden;
-            LauncherLanguageTheme.Apply(App.Settings.LauncherLanguage);
+            SetupThemeColorSelectors();
+            ApplyThemeSelectionFromSettings();
+            LauncherThemeManager.ApplyFromSettings(App.Settings);
             AddonListView.ItemsSource = App.Settings.AddonList ??= new List<AddonEntry>();
             AskBeforePatchingCheckBox.IsChecked = App.Settings.AskBeforePatchInstall;
             KeepPatchesCheckBox.IsChecked = App.Settings.KeepPatches;
@@ -112,6 +116,8 @@ namespace XIVLauncher.Windows
             if (App.Settings.LauncherLanguage == (LauncherLanguage)LauncherLanguageComboBox.SelectedIndex)
                 LauncherLanguageNoticeTextBlock.Visibility = Visibility.Hidden;
             App.Settings.LauncherLanguage = (LauncherLanguage)LauncherLanguageComboBox.SelectedIndex;
+            App.Settings.LauncherThemePrimaryColor = (ThemePrimaryColorComboBox.SelectedItem as LauncherThemeManager.ThemeColorOption)?.HexColor;
+            App.Settings.LauncherThemeSecondaryColor = (ThemeSecondaryColorComboBox.SelectedItem as LauncherThemeManager.ThemeColorOption)?.HexColor;
 
             App.Settings.AddonList = (List<AddonEntry>)AddonListView.ItemsSource;
             App.Settings.AskBeforePatchInstall = AskBeforePatchingCheckBox.IsChecked == true;
@@ -295,8 +301,42 @@ namespace XIVLauncher.Windows
 
             if (LauncherLanguageComboBox.SelectedIndex >= 0)
             {
-                LauncherLanguageTheme.Apply((LauncherLanguage)LauncherLanguageComboBox.SelectedIndex);
+                UpdateThemePreview();
             }
+        }
+
+        private void ThemeColorCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ThemePrimaryColorComboBox == null || ThemeSecondaryColorComboBox == null)
+                return;
+
+            UpdateThemePreview();
+        }
+
+        private void SetupThemeColorSelectors()
+        {
+            ThemePrimaryColorComboBox.ItemsSource = _themeColorOptions;
+            ThemeSecondaryColorComboBox.ItemsSource = _themeColorOptions;
+        }
+
+        private void ApplyThemeSelectionFromSettings()
+        {
+            SelectThemeColor(ThemePrimaryColorComboBox, App.Settings.LauncherThemePrimaryColor, LauncherThemeManager.GetDefaultPrimaryHex());
+            SelectThemeColor(ThemeSecondaryColorComboBox, App.Settings.LauncherThemeSecondaryColor, LauncherThemeManager.GetDefaultSecondaryHex());
+        }
+
+        private void SelectThemeColor(ComboBox comboBox, string? selectedColor, string fallbackColor)
+        {
+            var normalizedColor = (selectedColor ?? fallbackColor).ToUpperInvariant();
+            comboBox.SelectedItem = _themeColorOptions.FirstOrDefault(x => x.HexColor.Equals(normalizedColor, StringComparison.OrdinalIgnoreCase))
+                                   ?? _themeColorOptions.First(x => x.HexColor.Equals(fallbackColor, StringComparison.OrdinalIgnoreCase));
+        }
+
+        private void UpdateThemePreview()
+        {
+            var primary = (ThemePrimaryColorComboBox.SelectedItem as LauncherThemeManager.ThemeColorOption)?.HexColor;
+            var secondary = (ThemeSecondaryColorComboBox.SelectedItem as LauncherThemeManager.ThemeColorOption)?.HexColor;
+            LauncherThemeManager.Apply(primary, secondary);
         }
 
         private void EnableHooksCheckBox_OnChecked(object sender, RoutedEventArgs e)

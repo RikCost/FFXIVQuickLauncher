@@ -1,70 +1,80 @@
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Media;
 using MaterialDesignThemes.Wpf;
 using Serilog;
-using XIVLauncher.Common;
+using XIVLauncher.Settings;
 
 namespace XIVLauncher.Theme
 {
-    public static class LauncherLanguageTheme
+    public static class LauncherThemeManager
     {
-        private sealed class ThemePalette
+        public sealed class ThemeColorOption
         {
-            public ThemePalette(Color primary, Color secondary)
+            public ThemeColorOption(string name, string hexColor)
             {
-                Primary = primary;
-                Secondary = secondary;
+                Name = name;
+                HexColor = hexColor;
             }
 
-            public Color Primary { get; }
-            public Color Secondary { get; }
+            public string Name { get; }
+            public string HexColor { get; }
         }
 
-        private static readonly Dictionary<LauncherLanguage, ThemePalette> LanguagePalettes = new()
-        {
-            { LauncherLanguage.Japanese, new ThemePalette(Hex(0xFFFFFF), Hex(0xBC002D)) },          // Japan
-            { LauncherLanguage.English, new ThemePalette(Hex(0x3C3B6E), Hex(0xB22234)) },           // USA
-            { LauncherLanguage.German, new ThemePalette(Hex(0x000000), Hex(0xDD0000)) },            // Germany
-            { LauncherLanguage.French, new ThemePalette(Hex(0x0055A4), Hex(0xEF4135)) },            // France
-            { LauncherLanguage.Italian, new ThemePalette(Hex(0x009246), Hex(0xCE2B37)) },           // Italy
-            { LauncherLanguage.Spanish, new ThemePalette(Hex(0xAA151B), Hex(0xF1BF00)) },           // Spain
-            { LauncherLanguage.Portuguese, new ThemePalette(Hex(0x046A38), Hex(0xDA291C)) },        // Portugal
-            { LauncherLanguage.Korean, new ThemePalette(Hex(0x003478), Hex(0xC60C30)) },            // South Korea
-            { LauncherLanguage.Norwegian, new ThemePalette(Hex(0xBA0C2F), Hex(0x00205B)) },         // Norway
-            { LauncherLanguage.Russian, new ThemePalette(Hex(0x0039A6), Hex(0xD52B1E)) },           // Russia
-            { LauncherLanguage.SimplifiedChinese, new ThemePalette(Hex(0xDE2910), Hex(0xFFDE00)) }, // China
-            { LauncherLanguage.TraditionalChinese, new ThemePalette(Hex(0xFE0000), Hex(0x000095)) },// Taiwan
-            { LauncherLanguage.Swedish, new ThemePalette(Hex(0x006AA7), Hex(0xFECC00)) },           // Sweden
-        };
+        private const string DefaultPrimaryHex = "#2196F3";
+        private const string DefaultSecondaryHex = "#03A9F4";
 
-        public static void Apply(LauncherLanguage? language)
+        private static readonly ReadOnlyCollection<ThemeColorOption> ThemeColorOptions = new(new[]
         {
-            var selectedLanguage = language ?? LauncherLanguage.English;
-            var palette = LanguagePalettes.GetValueOrDefault(selectedLanguage, LanguagePalettes[LauncherLanguage.English]);
+            new ThemeColorOption("Blue", "#2196F3"),
+            new ThemeColorOption("Red", "#F44336"),
+            new ThemeColorOption("Green", "#4CAF50"),
+            new ThemeColorOption("Purple", "#9C27B0"),
+            new ThemeColorOption("Orange", "#FF9800"),
+            new ThemeColorOption("Pink", "#E91E63"),
+            new ThemeColorOption("Teal", "#009688"),
+            new ThemeColorOption("Indigo", "#3F51B5"),
+            new ThemeColorOption("Cyan", "#00BCD4"),
+            new ThemeColorOption("Amber", "#FFC107"),
+        });
 
+        public static ReadOnlyCollection<ThemeColorOption> GetThemeColorOptions() => ThemeColorOptions;
+
+        public static void ApplyFromSettings(ILauncherSettingsV3 settings)
+        {
+            Apply(settings.LauncherThemePrimaryColor, settings.LauncherThemeSecondaryColor);
+        }
+
+        public static void Apply(string? primaryHex, string? secondaryHex)
+        {
             try
             {
                 var paletteHelper = new PaletteHelper();
                 var theme = paletteHelper.GetTheme();
 
-                theme.SetPrimaryColor(palette.Primary);
-                theme.SetSecondaryColor(palette.Secondary);
+                theme.SetPrimaryColor(ParseColorOrDefault(primaryHex, DefaultPrimaryHex));
+                theme.SetSecondaryColor(ParseColorOrDefault(secondaryHex, DefaultSecondaryHex));
 
                 paletteHelper.SetTheme(theme);
             }
             catch (Exception ex)
             {
-                Log.Warning(ex, "Could not apply launcher language theme for {Language}", selectedLanguage);
+                Log.Warning(ex, "Could not apply launcher theme");
             }
         }
 
-        private static Color Hex(int value)
+        public static string GetDefaultPrimaryHex() => DefaultPrimaryHex;
+        public static string GetDefaultSecondaryHex() => DefaultSecondaryHex;
+
+        private static Color ParseColorOrDefault(string? rawColor, string fallbackColor)
         {
-            return Color.FromRgb(
-                (byte)((value >> 16) & 0xFF),
-                (byte)((value >> 8) & 0xFF),
-                (byte)(value & 0xFF));
+            if (!string.IsNullOrWhiteSpace(rawColor) &&
+                ColorConverter.ConvertFromString(rawColor) is Color parsedColor)
+            {
+                return parsedColor;
+            }
+
+            return (Color)ColorConverter.ConvertFromString(fallbackColor);
         }
     }
 }

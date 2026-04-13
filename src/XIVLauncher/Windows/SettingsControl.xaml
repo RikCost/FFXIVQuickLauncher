@@ -121,6 +121,18 @@
                     <TextBlock x:Name="LauncherLanguageNoticeTextBlock" Visibility="Hidden"
                                HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="OrangeRed"
                                Margin="0,0,0,0" Text="{Binding LauncherLanguageNoticeLoc}" />
+
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0, 20, 0, 0"
+                               Foreground="{DynamicResource MaterialDesignBody}" Text="Launcher theme primary color" />
+                    <ComboBox Margin="0, 3, 0, 0" x:Name="ThemePrimaryColorComboBox"
+                              Foreground="{DynamicResource MaterialDesignBody}" DisplayMemberPath="Name"
+                              SelectionChanged="ThemeColorCombo_SelectionChanged" />
+
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0, 10, 0, 0"
+                               Foreground="{DynamicResource MaterialDesignBody}" Text="Launcher theme secondary color" />
+                    <ComboBox Margin="0, 3, 0, 0" x:Name="ThemeSecondaryColorComboBox"
+                              Foreground="{DynamicResource MaterialDesignBody}" DisplayMemberPath="Name"
+                              SelectionChanged="ThemeColorCombo_SelectionChanged" />
                 </StackPanel>
             </TabItem>
             <TabItem Header="{Binding SettingsAutoLaunchLoc}">
