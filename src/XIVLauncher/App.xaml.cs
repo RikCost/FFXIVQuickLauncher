@@ -23,6 +23,7 @@ using XIVLauncher.Common.Windows;
 using XIVLauncher.PlatformAbstractions;
 using XIVLauncher.Settings;
 using XIVLauncher.Settings.Parsers;
+using XIVLauncher.Theme;
 using XIVLauncher.Windows;
 using XIVLauncher.Xaml;
 
@@ -402,6 +403,8 @@ namespace XIVLauncher
             // Force all fallbacks
             Loc.Setup("{}");
 #endif
+
+            LauncherLanguageTheme.Apply(App.Settings.LauncherLanguage);
 
             try
             {

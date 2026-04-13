@@ -231,6 +231,9 @@ namespace XIVLauncher
             return true;
         }
 
-        public static bool IsDisableUpdates => EnvironmentSettings.CheckEnvBool("XL_NOAUTOUPDATE") || DebugHelpers.IsDebugBuild;
+        public static bool IsDisableUpdates =>
+            EnvironmentSettings.CheckEnvBool("XL_NOAUTOUPDATE") ||
+            DebugHelpers.IsDebugBuild ||
+            GetBuildOrigin() != "goatcorp/FFXIVQuickLauncher";
     }
 }

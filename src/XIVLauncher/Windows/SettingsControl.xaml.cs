@@ -17,6 +17,7 @@ using XIVLauncher.Common.Addon.Implementations;
 using XIVLauncher.Common.Dalamud;
 using XIVLauncher.Common.Util;
 using XIVLauncher.Support;
+using XIVLauncher.Theme;
 using XIVLauncher.Windows.ViewModel;
 
 namespace XIVLauncher.Windows
@@ -66,6 +67,7 @@ namespace XIVLauncher.Windows
             LanguageComboBox.SelectedIndex = (int) App.Settings.Language.GetValueOrDefault(ClientLanguage.English);
             LauncherLanguageComboBox.SelectedIndex = (int) App.Settings.LauncherLanguage.GetValueOrDefault(LauncherLanguage.English);
             LauncherLanguageNoticeTextBlock.Visibility = Visibility.Hidden;
+            LauncherLanguageTheme.Apply(App.Settings.LauncherLanguage);
             AddonListView.ItemsSource = App.Settings.AddonList ??= new List<AddonEntry>();
             AskBeforePatchingCheckBox.IsChecked = App.Settings.AskBeforePatchInstall;
             KeepPatchesCheckBox.IsChecked = App.Settings.KeepPatches;
@@ -289,6 +291,11 @@ namespace XIVLauncher.Windows
             if (LauncherLanguageNoticeTextBlock != null)
             {
                 LauncherLanguageNoticeTextBlock.Visibility = Visibility.Visible;
+            }
+
+            if (LauncherLanguageComboBox.SelectedIndex >= 0)
+            {
+                LauncherLanguageTheme.Apply((LauncherLanguage)LauncherLanguageComboBox.SelectedIndex);
             }
         }
 
