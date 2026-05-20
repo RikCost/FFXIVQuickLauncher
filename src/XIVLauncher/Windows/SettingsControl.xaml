@@ -65,7 +65,7 @@
 
                     <CheckBox Foreground="{DynamicResource MaterialDesignBody}"
                               x:Name="AutoStartSteamCheckBox" Margin="0,10,0,0" Content="{Binding AutoStartSteamLoc}" ToolTip="{Binding AutoStartSteamTooltipLoc}" />
-                    
+
                     <TextBox Width="500" VerticalAlignment="Center"
                              HorizontalAlignment="Left" Foreground="{DynamicResource MaterialDesignBody}"
                              Margin="0,4,0,0" x:Name="LaunchArgsTextBox" materialDesign:HintAssist.Hint="{Binding AdditionalArgumentsLoc}" materialDesign:HintAssist.IsFloating="True"/>
@@ -86,10 +86,10 @@
                     <CheckBox x:Name="IsFreeTrialCheckbox" Click="IsFreeTrialCheckbox_OnClick"
                               Content="{Binding IsFreeTrialLoc}" Foreground="{DynamicResource MaterialDesignBody}"
                               HorizontalAlignment="Left" Margin="0,0,0,15" />
-                    
+
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top"
                                Foreground="{DynamicResource MaterialDesignBody}" Text="{Binding ChooseLanguageLoc}" />
-                    
+
                     <ComboBox SelectedIndex="1" Margin="0, 3, 0, 0" x:Name="LanguageComboBox"
                               Foreground="{DynamicResource MaterialDesignBody}">
                         <ComboBoxItem>日本語</ComboBoxItem>
@@ -124,15 +124,21 @@
 
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0, 20, 0, 0"
                                Foreground="{DynamicResource MaterialDesignBody}" Text="Launcher theme primary color" />
-                    <ComboBox Margin="0, 3, 0, 0" x:Name="ThemePrimaryColorComboBox"
-                              Foreground="{DynamicResource MaterialDesignBody}" DisplayMemberPath="Name"
-                              SelectionChanged="ThemeColorCombo_SelectionChanged" />
+                    <StackPanel Orientation="Horizontal" Margin="0, 3, 0, 0">
+                        <ComboBox x:Name="ThemePrimaryColorComboBox" Width="300"
+                                  Foreground="{DynamicResource MaterialDesignBody}" DisplayMemberPath="Name"
+                                  SelectionChanged="ThemeColorCombo_SelectionChanged" />
+                        <Border Width="40" Height="24" Margin="8,0,0,0" Background="{DynamicResource PrimaryHueMidBrush}" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" BorderThickness="1" CornerRadius="2" VerticalAlignment="Center" />
+                    </StackPanel>
 
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0, 10, 0, 0"
                                Foreground="{DynamicResource MaterialDesignBody}" Text="Launcher theme secondary color" />
-                    <ComboBox Margin="0, 3, 0, 0" x:Name="ThemeSecondaryColorComboBox"
-                              Foreground="{DynamicResource MaterialDesignBody}" DisplayMemberPath="Name"
-                              SelectionChanged="ThemeColorCombo_SelectionChanged" />
+                    <StackPanel Orientation="Horizontal" Margin="0, 3, 0, 0">
+                        <ComboBox x:Name="ThemeSecondaryColorComboBox" Width="300"
+                                  Foreground="{DynamicResource MaterialDesignBody}" DisplayMemberPath="Name"
+                                  SelectionChanged="ThemeColorCombo_SelectionChanged" />
+                        <Border Width="40" Height="24" Margin="8,0,0,0" Background="{DynamicResource SecondaryHueMidBrush}" BorderBrush="{DynamicResource SecondaryHueDarkBrush}" BorderThickness="1" CornerRadius="2" VerticalAlignment="Center" />
+                    </StackPanel>
                 </StackPanel>
             </TabItem>
             <TabItem Header="{Binding SettingsAutoLaunchLoc}">
@@ -194,18 +200,18 @@
                                 <TextBlock Foreground="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,2,0,0"
                                            Text="{Binding InGameAddonCommandHintLoc}" />
                             </StackPanel>
-                            
+
                             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0"
                                        Foreground="{DynamicResource MaterialDesignBody}"
                                        Text="{Binding InGameAddonBranchSwitcherDescriptionLoc}" />
-                            
+
                             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5,0,0"
                                        Foreground="DarkGray"
                                        Text="{Binding InGameAddonBranchSwitcherCurrentBranchLoc}" />
 
                             <TextBlock x:Name="DalamudBranchTextBlock" Margin="22,0,0,0" VerticalAlignment="Top"
                                        Foreground="DarkGray" Text="" />
-                            
+
                             <Border BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}" BorderThickness="2" CornerRadius="4" Margin="10, 10, 0, 10" HorizontalAlignment="Left">
                                 <Button Style="{DynamicResource MaterialDesignFlatButton}"
                                         HorizontalAlignment="Center"
@@ -255,10 +261,10 @@
                 <Grid>
                     <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="600">
-                            <TextBlock Text="Backup and restore your launcher settings, plugins and plugin settings." 
+                            <TextBlock Text="Backup and restore your launcher settings, plugins and plugin settings."
                                        HorizontalAlignment="Center" TextAlignment="Center"
                                        Foreground="{DynamicResource MaterialDesignBody}" Margin="0,0,0,5" />
-                            <TextBlock Text="Some data for plugins that store files externally may not be included in this backup." 
+                            <TextBlock Text="Some data for plugins that store files externally may not be included in this backup."
                                        HorizontalAlignment="Center" TextAlignment="Center"
                                        Foreground="{DynamicResource MaterialDesignBody}" Margin="0,0,0,20" />
 
@@ -370,14 +376,14 @@
         </dragablz:TabablzControl>
         <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                 ToolTip="{Binding OpenPluginsFolderLoc}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,60,10"
-                Click="PluginsFolderButton_Click">
+                Click="PluginsFolderButton_Click" Background="{DynamicResource SecondaryHueMidBrush}" Foreground="White">
             <materialDesign:PackIcon Kind="FolderOpen" Height="24" Width="24" />
         </Button>
 
         <!-- Used to have Command="{x:Static materialDesign:Transitioner.MoveNextCommand}" but now invoked in AcceptButton_Click -->
         <Button x:Name="AcceptSettingsButton" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                 ToolTip="{Binding SaveSettingsLoc}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,10,10"
-                Click="AcceptButton_Click">
+                Click="AcceptButton_Click" Background="{DynamicResource SecondaryHueMidBrush}" Foreground="White">
             <materialDesign:PackIcon Kind="Check" Height="24" Width="24" />
         </Button>
     </Grid>
