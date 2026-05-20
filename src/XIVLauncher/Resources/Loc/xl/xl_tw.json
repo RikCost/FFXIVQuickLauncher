@@ -911,6 +911,14 @@
     "message": "您希望重新啟動 XIVLauncher 以應用啟動器語言變更。",
     "description": "SettingsControlViewModel.SetupLoc"
   },
+  "LauncherThemePrimaryColor": {
+    "message": "啟動器主題 - 主要顏色",
+    "description": "SettingsControlViewModel.SetupLoc"
+  },
+  "LauncherThemeSecondaryColor": {
+    "message": "啟動器主題 - 次要顏色",
+    "description": "SettingsControlViewModel.SetupLoc"
+  },
   "SettingsAutoLaunch": {
     "message": "自動啟動",
     "description": "SettingsControlViewModel.SetupLoc"

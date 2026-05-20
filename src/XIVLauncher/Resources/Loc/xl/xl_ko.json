@@ -911,6 +911,14 @@
     "message": "언어 설정을 적용하려면 런처를 재실행 해야 합니다.",
     "description": "SettingsControlViewModel.SetupLoc"
   },
+  "LauncherThemePrimaryColor": {
+    "message": "런처 테마 기본 색상",
+    "description": "SettingsControlViewModel.SetupLoc"
+  },
+  "LauncherThemeSecondaryColor": {
+    "message": "런처 테마 보조 색상",
+    "description": "SettingsControlViewModel.SetupLoc"
+  },
   "SettingsAutoLaunch": {
     "message": "자동 실행",
     "description": "SettingsControlViewModel.SetupLoc"

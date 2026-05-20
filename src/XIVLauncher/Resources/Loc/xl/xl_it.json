@@ -911,6 +911,14 @@
     "message": "Per applicare l'impostazione della lingua del launcher è necessario un riavvio.",
     "description": "SettingsControlViewModel.SetupLoc"
   },
+  "LauncherThemePrimaryColor": {
+    "message": "Colore primario del tema del launcher",
+    "description": "SettingsControlViewModel.SetupLoc"
+  },
+  "LauncherThemeSecondaryColor": {
+    "message": "Colore secondario del tema del launcher",
+    "description": "SettingsControlViewModel.SetupLoc"
+  },
   "SettingsAutoLaunch": {
     "message": "Avvio automatico",
     "description": "SettingsControlViewModel.SetupLoc"

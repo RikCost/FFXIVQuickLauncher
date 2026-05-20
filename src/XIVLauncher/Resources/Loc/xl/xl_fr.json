@@ -911,6 +911,14 @@
     "message": "Un redémarrage est nécessaire pour modifier la langue du lanceur.",
     "description": "SettingsControlViewModel.SetupLoc"
   },
+  "LauncherThemePrimaryColor": {
+    "message": "Couleur primaire du thème du lanceur",
+    "description": "SettingsControlViewModel.SetupLoc"
+  },
+  "LauncherThemeSecondaryColor": {
+    "message": "Couleur secondaire du thème du lanceur",
+    "description": "SettingsControlViewModel.SetupLoc"
+  },
   "SettingsAutoLaunch": {
     "message": "Lancement automatique",
     "description": "SettingsControlViewModel.SetupLoc"

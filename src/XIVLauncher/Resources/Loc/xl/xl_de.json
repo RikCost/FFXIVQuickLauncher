@@ -911,6 +911,14 @@
     "message": "Ein Neustart wird benötigt, um die Sprache des Launchers zu ändern.",
     "description": "SettingsControlViewModel.SetupLoc"
   },
+  "LauncherThemePrimaryColor": {
+    "message": "Primärfarbe des Launcher-Themas",
+    "description": "SettingsControlViewModel.SetupLoc"
+  },
+  "LauncherThemeSecondaryColor": {
+    "message": "Sekundärfarbe des Launcher-Themas",
+    "description": "SettingsControlViewModel.SetupLoc"
+  },
   "SettingsAutoLaunch": {
     "message": "Auto-Start",
     "description": "SettingsControlViewModel.SetupLoc"

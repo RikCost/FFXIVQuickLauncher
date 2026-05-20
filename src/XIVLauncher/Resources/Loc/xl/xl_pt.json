@@ -911,6 +911,14 @@
     "message": "É necessário reiniciar para aplicar a configuração de idioma do launcher.",
     "description": "SettingsControlViewModel.SetupLoc"
   },
+  "LauncherThemePrimaryColor": {
+    "message": "Cor primária do tema do launcher",
+    "description": "SettingsControlViewModel.SetupLoc"
+  },
+  "LauncherThemeSecondaryColor": {
+    "message": "Cor secundária do tema do launcher",
+    "description": "SettingsControlViewModel.SetupLoc"
+  },
   "SettingsAutoLaunch": {
     "message": "Abrir automaticamente",
     "description": "SettingsControlViewModel.SetupLoc"

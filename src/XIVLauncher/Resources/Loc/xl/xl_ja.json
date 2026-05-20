@@ -911,6 +911,14 @@
     "message": "ランチャーの言語設定を適用するには再起動が必要です。",
     "description": "SettingsControlViewModel.SetupLoc"
   },
+  "LauncherThemePrimaryColor": {
+    "message": "ランチャーのテーマのプライマリカラー",
+    "description": "SettingsControlViewModel.SetupLoc"
+  },
+  "LauncherThemeSecondaryColor": {
+    "message": "ランチャーのテーマのセカンダリカラー",
+    "description": "SettingsControlViewModel.SetupLoc"
+  },
   "SettingsAutoLaunch": {
     "message": "自動起動",
     "description": "SettingsControlViewModel.SetupLoc"

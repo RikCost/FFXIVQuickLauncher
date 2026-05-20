@@ -911,6 +911,14 @@
     "message": "En omstart krävs för att tillämpa språkinställningen.",
     "description": "SettingsControlViewModel.SetupLoc"
   },
+  "LauncherThemePrimaryColor": {
+    "message": "Primärfärg för launchertemat",
+    "description": "SettingsControlViewModel.SetupLoc"
+  },
+  "LauncherThemeSecondaryColor": {
+    "message": "Sekundärfärg för launchertemat",
+    "description": "SettingsControlViewModel.SetupLoc"
+  },
   "SettingsAutoLaunch": {
     "message": "Auto-start",
     "description": "SettingsControlViewModel.SetupLoc"

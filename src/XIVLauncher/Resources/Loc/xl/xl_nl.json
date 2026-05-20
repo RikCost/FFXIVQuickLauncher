@@ -911,6 +911,14 @@
     "message": "Een herstart is vereist om de launcher taalinstelling toe te passen.",
     "description": "SettingsControlViewModel.SetupLoc"
   },
+  "LauncherThemePrimaryColor": {
+    "message": "Primaire kleur van het launcher-thema",
+    "description": "SettingsControlViewModel.SetupLoc"
+  },
+  "LauncherThemeSecondaryColor": {
+    "message": "Secundaire kleur van het launcher-thema",
+    "description": "SettingsControlViewModel.SetupLoc"
+  },
   "SettingsAutoLaunch": {
     "message": "Auto-starten",
     "description": "SettingsControlViewModel.SetupLoc"

@@ -911,6 +911,14 @@
     "message": "Для применения языковых настроек лаунчера требуется перезапуск.",
     "description": "SettingsControlViewModel.SetupLoc"
   },
+  "LauncherThemePrimaryColor": {
+    "message": "Основной цвет темы лаунчера",
+    "description": "SettingsControlViewModel.SetupLoc"
+  },
+  "LauncherThemeSecondaryColor": {
+    "message": "Вторичный цвет темы лаунчера",
+    "description": "SettingsControlViewModel.SetupLoc"
+  },
   "SettingsAutoLaunch": {
     "message": "Автоматический запуск",
     "description": "SettingsControlViewModel.SetupLoc"

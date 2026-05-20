@@ -911,6 +911,14 @@
     "message": "Du må starte programmet på nytt for å fullføre språkendringen.",
     "description": "SettingsControlViewModel.SetupLoc"
   },
+  "LauncherThemePrimaryColor": {
+    "message": "Primærfarge for launcher-temaet",
+    "description": "SettingsControlViewModel.SetupLoc"
+  },
+  "LauncherThemeSecondaryColor": {
+    "message": "Sekundærfarge for launcher-temaet",
+    "description": "SettingsControlViewModel.SetupLoc"
+  },
   "SettingsAutoLaunch": {
     "message": "Autostart",
     "description": "SettingsControlViewModel.SetupLoc"
