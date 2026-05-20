@@ -92,6 +92,10 @@ namespace XIVLauncher.Windows.ViewModel
                 "Notice any mistakes? You can help out translating the launcher! Just click here!");
             LauncherLanguageNoticeLoc = Loc.Localize("LauncherLanguageNotice", "A restart is required to apply the launcher language setting.");
 
+            // Launcher theme labels
+            LauncherThemePrimaryColorLoc = Loc.Localize("LauncherThemePrimaryColor", "Launcher theme primary color");
+            LauncherThemeSecondaryColorLoc = Loc.Localize("LauncherThemeSecondaryColor", "Launcher theme secondary color");
+
             SettingsAutoLaunchLoc = Loc.Localize("SettingsAutoLaunch", "Auto-Launch");
             AutoLaunchHintLoc = Loc.Localize("AutoLaunchHint",
                 "These are applications that are started as soon as the game has started.");
@@ -180,6 +184,9 @@ namespace XIVLauncher.Windows.ViewModel
         public string ChooseLauncherLanguageLoc { get; private set; }
         public string LauncherLanguageHelpCtaLoc { get; private set; }
         public string LauncherLanguageNoticeLoc { get; private set; }
+
+        public string LauncherThemePrimaryColorLoc { get; private set; }
+        public string LauncherThemeSecondaryColorLoc { get; private set; }
 
         public string SettingsAutoLaunchLoc { get; private set; }
         public string AutoLaunchHintLoc { get; private set; }

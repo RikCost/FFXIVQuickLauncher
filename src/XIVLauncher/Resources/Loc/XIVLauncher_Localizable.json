@@ -911,6 +911,14 @@
     "message": "A restart is required to apply the launcher language setting.",
     "description": "SettingsControlViewModel.SetupLoc"
   },
+  "LauncherThemePrimaryColor": {
+    "message": "Launcher theme primary color",
+    "description": "SettingsControlViewModel.SetupLoc"
+  },
+  "LauncherThemeSecondaryColor": {
+    "message": "Launcher theme secondary color",
+    "description": "SettingsControlViewModel.SetupLoc"
+  },
   "SettingsAutoLaunch": {
     "message": "Auto-Launch",
     "description": "SettingsControlViewModel.SetupLoc"
